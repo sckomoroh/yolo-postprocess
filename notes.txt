@@ -1,0 +1,11 @@
+yolo classify predict model=yolov8n-cls.pt source='data/input.jpeg' save_txt=True
+yolo detect predict model=yolov8n.pt source='data/input.jpeg'
+yolo segment predict model=yolov8n-seg.pt source='data/input.jpeg'
+yolo pose predict model=yolov8n-pose.pt source='data/input.jpeg'
+
+yolo export model=yolov8n-cls.pt format=onnx 
+yolo export model=yolov8n.pt format=onnx 
+yolo export model=yolov8n-seg.pt format=onnx 
+yolo export model=yolov8n-pose.pt format=onnx 
+
+python3 -c "from ultralytics import YOLO; print(YOLO('yolov8n-pose.pt').names)" >> models/labels-pose.txt
