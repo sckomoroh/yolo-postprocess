@@ -6,6 +6,9 @@ class OnnxEngine:
         self.class_names = {}
         self.sesstion = ort.InferenceSession(model)
 
+    def get_inputs(self):
+        return self.sesstion.get_inputs()
+    
     def dump_inputs(self):
         inputs = self.sesstion.get_inputs()
         for input in inputs:

@@ -14,7 +14,9 @@ def classification_process(batch: np.ndarray, engine: OnnxEngine):
     
     print (msg)
 
-def detect_process(tensor: np.ndarray, engine: OnnxEngine, orig_img: np.ndarray, conf_thres: float = 0.5):
+def detect_process(batch: np.ndarray, engine: OnnxEngine, orig_img: np.ndarray, conf_thres: float = 0.5):
+    tensor = batch[0][0]
+    
     scale_x = orig_img.shape[1] / 640
     scale_y = orig_img.shape[0] / 640
 
@@ -196,7 +198,7 @@ def segment_process(batch: np.ndarray, engine: OnnxEngine, orig_img: np.ndarray,
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-def pose_process(batch: np.ndarray, engine: OnnxEngine, orig_img: np.ndarray, conf_thres: float = 0.5):
+def pose_process(batch: np.ndarray, orig_img: np.ndarray, conf_thres: float = 0.5):
     tensor = batch[0][0]
 
 
